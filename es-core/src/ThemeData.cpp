@@ -7,7 +7,7 @@
 #include "Log.h"
 #include "platform.h"
 #include "Settings.h"
-#include <pugixml/src/pugixml.hpp>
+#include <pugixml.hpp>
 #include <algorithm>
 
 std::vector<std::string> ThemeData::sSupportedViews { { "system" }, { "basic" }, { "detailed" }, { "grid" }, { "video" } };
@@ -43,7 +43,8 @@ std::map<std::string, std::map<std::string, ThemeData::ElementPropertyType>> The
 		{ "centerSelection", BOOLEAN },
 		{ "scrollLoop", BOOLEAN },
 		{ "animate", BOOLEAN },
-		{ "zIndex", FLOAT } } },
+		{ "zIndex", FLOAT },
+		{ "scrollSound", PATH } } },
 	{ "gridtile", {
 		{ "size", RESOLUTION_PAIR },
 		{ "padding", RESOLUTION_PAIR },
@@ -169,7 +170,8 @@ std::map<std::string, std::map<std::string, ThemeData::ElementPropertyType>> The
 		{ "logoSize", NORMALIZED_PAIR },
 		{ "logoAlignment", STRING },
 		{ "maxLogoCount", FLOAT },
-		{ "zIndex", FLOAT } } }
+		{ "zIndex", FLOAT },
+		{ "scrollSound", PATH } } }
 };
 
 #define MINIMUM_THEME_FORMAT_VERSION 3

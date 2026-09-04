@@ -52,7 +52,18 @@ bool parseArgs(int argc, char* argv[])
 
 	for(int i = 1; i < argc; i++)
 	{
-		if(strcmp(argv[i], "--resolution") == 0)
+		if(strcmp(argv[i], "--monitor") == 0)
+		{
+			if (i >= argc - 1)
+			{
+				std::cerr << "Invalid monitor supplied.";
+				return false;
+			}
+
+			int monitor = atoi(argv[i + 1]);
+			i++; // skip the argument value
+			Settings::getInstance()->setInt("MonitorID", monitor);
+		}else if(strcmp(argv[i], "--resolution") == 0)
 		{
 			if(i >= argc - 2)
 			{
@@ -180,7 +191,9 @@ bool parseArgs(int argc, char* argv[])
 				"--screensize WIDTH HEIGHT      for a canvas smaller than the full resolution,\n"
 				"                               or if rotating into portrait mode\n"
 				"--screenoffset X Y             move the canvas by x,y pixels\n"
+				"--fullscreen-borderless        borderless fullscreen window\n"
 				"--windowed                     not fullscreen, should be used with --resolution\n"
+				"--monitor N                    monitor index (0-)\n"
 				"\nGame and settings visibility in ES and behaviour of ES:\n"
 				"--force-disable-filters        force the UI to ignore applied filters on\n"
 				"                               gamelist (p)\n"
